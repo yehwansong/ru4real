@@ -1,25 +1,276 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Background</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cordoba Panel Mapping</title>
   <style>
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
 
-    body {
-      width: 100vw;
-      height: 100vh;
-      background-image: url('grid.jpg');
-      background-size: cover;
-      background-position: left top;
-      background-repeat: no-repeat;
+
+    #grid {
+    background-image: url(grid.jpg);
+    background-position: left top;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    /* opacity: var(--grid-opacity); */
+    pointer-events: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
     }
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+      cursor: none;
+      user-select: none;
+    }
+
+    #stage {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      background: #000;
+    }
+
+    #panels {
+      position: absolute;
+      inset: 0;
+      perspective: 10vh
+    }
+
+    .panel {
+      position: absolute;
+      min-width: 2px;
+      min-height: 2px;
+      background: #ff0000;
+      opacity: 0.5;
+      transform-origin: left top
+      
+    }
+
+    .panel:nth-child(1)  {
+    left: 58.1%;
+    top: 4.9%;
+    width: 5.97%;
+    height: 10.4%;}
+    .panel:nth-child(2)  {
+    left: 54%;
+    top: 16.6%;
+    width: 2.4%;
+    height: 5.4%;
+    TRANSFORM: SKEWY(1DEG);}
+    .panel:nth-child(3)  {
+    left: 58%;
+    top: 16.4%;
+    width: 2.666667%;
+    height: 5.5%;}
+    .panel:nth-child(4)  {
+    left: 63.2%;
+    top: 16.3%;
+    width: 2.9%;
+    height: 5.6%;}
+    .panel:nth-child(5)  {
+    left: 48.55%;
+    top: 28.6%;
+    width: 2.5%;
+    height: 6.5%;
+    transform: skewX(-1deg);}
+    .panel:nth-child(6)  {
+    left: 57.8%;
+    top: 28.5%;
+    width: 3.7%;
+    height: 7%;
+    transform: rotate(-2deg);}
+    .panel:nth-child(7)  {
+    left: 52.5%;
+    top: 28.6%;
+    width: 3.45%;
+    height: 6.7%;}
+    .panel:nth-child(8)  {
+    left: 63.24%;
+    top: 28.5%;
+    width: 3.1%;
+    height: 6.7%;
+    transform: rotate(-1deg);}
+    .panel:nth-child(9)  {
+    left: 68%;
+    top: 16.3%;
+    width: 2.35%;
+    height: 5.7%;
+}
+    .panel:nth-child(10) {
+    left: 67.55%;
+    top: 27.7%;
+    width: 1.86%;
+    height: 6.95%;
+    transform: rotate(-1deg);
+}
+    .panel:nth-child(11) {
+    left: 68%;
+    top: 39.6%;
+    width: 1.8%;
+    height: 7.5%;
+    transform: rotate(0.5deg) rotateX(1deg) skewX(-2deg);}
+    .panel:nth-child(12) {
+    left: 45.95%;
+    top: 39.6%;
+    width: 3.2%;
+    height: 7.9%;}
+    .panel:nth-child(13) {    left: 50.9%;
+    top: 39.5%;
+    width: 4.3%;
+    height: 8.2%;
+    transform: skewX(1.5deg);}
+    .panel:nth-child(14) {
+    left: 57.333333%;
+    top: 39.5%;
+    width: 4.4%;
+    height: 8.25%;}
+    .panel:nth-child(15) {
+    left: 63.5%;
+    top: 39.6%;
+    width: 3.3%;
+    height: 8.2%;
+    transform: skewY(-2deg);}
+    /*.panel:nth-child(16) { left: 96%;        top: 40%;   width: 4%;        height: 7.5%; }*/
+    /*.panel:nth-child(17) { left: 68%;        top: 47.5%; width: 4%;        height: 7.5%; }*/
+    .panel:nth-child(18) {
+    left: 53.4%;
+    top: 52%;
+    width: 5.5%;
+    height: 10%;}
+    /*.panel:nth-child(19) { left: 54.666667%; top: 50%;   width: 4%;        height: 10%; }*/
+    .panel:nth-child(20) {
+    left: 41.2%;
+    top: 50.7%;
+    width: 3.15%;
+    height: 9.5%;
+    transform: rotateY(-2deg) skewY(1deg);}
+    .panel:nth-child(21) {
+    left: 46.2%;
+    top: 51.5%;
+    width: 4.7%;
+    height: 9.8%;
+    transform: rotateY(-1deg) skewY(1deg);}
+    .panel:nth-child(22) {
+    left: 61.333333%;
+    top: 52.1%;
+    width: 4.75%;
+    height: 10%;
+    transform: skewY(-2deg);}
+    /*.panel:nth-child(23) { left: 73.333333%; top: 50%;   width: 4%;        height: 7.5%; }*/
+    /*.panel:nth-child(24) { left: 86.666667%; top: 52.5%; width: 5.333333%; height: 10%; }*/
+    .panel:nth-child(25) {
+    left: 46.4%;
+    top: 63.9%;
+    width: 3.8%;
+    height: 10.7%;
+    transform: rotate(1.5deg) rotateY(-1deg);}
+    .panel:nth-child(26) {
+    left: 51.5%;
+    top: 64.9%;
+    width: 5.1%;
+    height: 10.9%;
+    transform: skewY(-1deg) rotateY(-3deg) skewX(-2deg)}
+    .panel:nth-child(27) {    left: 58.4%;
+    top: 65.5%;
+    width: 6.1%;
+    height: 11.5%;
+    transform: skewX(0.5deg);}
+    /*.panel:nth-child(28) { left: 48%;        top: 65%;   width: 2.666667%; height: 10%; }*/
+    /*.panel:nth-child(29) { left: 48%;        top: 67.5%; width: 4%;        height: 10%; }*/
+    .panel:nth-child(30) {
+    left: 66.3%;
+    top: 65.5%;
+    width: 5.7%;
+    height: 11.2%;
+    transform: skewY(-4deg) rotateX(0.51deg);}
+    .panel:nth-child(31) {
+    left: 65.5%;
+    top: 76.8%;
+    width: 6.8%;
+    height: 12.5%;
+    transform: skewY(3deg) skewX(-0.5deg);}
+    .panel:nth-child(32) {
+    left: 53.3%;
+    top: 75%;
+    width: 4.05%;
+    height: 11.5%;
+    background: yellow;
+    z-index: 10;
+    transform: skewY(-4deg) rotateY(-5deg);}
+    .panel:nth-child(33) {
+    left: 58.4%;
+    top: 76.5%;
+    width: 6.1%;
+    height: 11.7%;
+    transform: skewY(5deg) skewX(1deg);}
+    /*.panel:nth-child(34) { left: 53.333333%; top: 77.5%; width: 5.333333%; height: 12.5%; }*/
+    .panel:nth-child(35) { 
+    left: 80.5%;
+    top: 76.4%;
+    width: 5.15%;
+    height: 12.5%;
+    transform: skewY(-5deg) rotateX(0.2deg);}
+    .panel:nth-child(36) {
+    left: 73.2%;
+    top: 77%;
+    width: 5.333333%;
+    height: 12.5%;
+    TRANSFORM: SKEWX(1deg) skewY(-4deg);}
   </style>
 </head>
-<body></body>
+<body>
+  <main id="stage" aria-label="Projection mapping canvas">
+    <div id="grid"></div>
+    <div id="panels">
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+      <div class="panel"></div>
+    </div>
+  </main>
+</body>
 </html>
